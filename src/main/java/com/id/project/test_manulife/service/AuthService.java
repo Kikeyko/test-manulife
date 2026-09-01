@@ -2,8 +2,8 @@ package com.id.project.test_manulife.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.id.project.test_manulife.dto.token.TokenRequest;
-import com.id.project.test_manulife.dto.token.TokenResponse;
+import com.id.project.test_manulife.model.dto.token.TokenRequestDto;
+import com.id.project.test_manulife.model.dto.token.TokenResponseDto;
 import com.id.project.test_manulife.generator.TokenGenerator;
 import com.id.project.test_manulife.util.LoggingUtil;
 import com.id.project.test_manulife.validator.AuthValidator;
@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
     @Autowired
+    private TokenService tokenService;
+
+    @Autowired
     private AuthValidator authValidator;
 
     @Autowired
@@ -22,7 +25,7 @@ public class AuthService {
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
 
-    public TokenResponse generateToken(TokenRequest request) throws JsonProcessingException {
+    public TokenResponseDto generateToken(TokenRequestDto request) throws JsonProcessingException {
         DateTime startTime = DateTime.now();
         String flow = "OAUTH_TOKEN_GENERATION";
 
@@ -34,8 +37,10 @@ public class AuthService {
         // 2. Generate token
         String generatedToken = tokenGenerator.generateBearerToken();
 
+        tokenService.saveToken(generatedToken);
+
         // 3. Build response
-        TokenResponse response = TokenResponse.builder()
+        TokenResponseDto response = TokenResponseDto.builder()
                 .accessToken(generatedToken)
                 .expiresIn(3599)
                 .tokenType("bearer")

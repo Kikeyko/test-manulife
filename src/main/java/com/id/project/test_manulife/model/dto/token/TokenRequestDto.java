@@ -1,4 +1,4 @@
-package com.id.project.test_manulife.dto.token;
+package com.id.project.test_manulife.model.dto.token;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TokenRequest {
+public class TokenRequestDto {
 
     @NotBlank(message = "client_id is required")
     @JsonProperty("client_id")

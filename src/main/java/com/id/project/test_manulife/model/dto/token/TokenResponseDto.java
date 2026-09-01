@@ -1,4 +1,4 @@
-package com.id.project.test_manulife.dto.token;
+package com.id.project.test_manulife.model.dto.token;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TokenResponse {
+public class TokenResponseDto {
 
     @JsonProperty("access_token")
     private String accessToken;
