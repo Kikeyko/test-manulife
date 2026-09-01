@@ -1,4 +1,4 @@
-package com.id.project.test_manulife.dto.error;
+package com.id.project.test_manulife.model.dto.error;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ErrorResponse {
+public class ErrorResponseDto {
 
     private String error;
 
