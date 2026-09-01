@@ -51,3 +51,7 @@ build/
 
 ### application.properties ###
 src/main/resources/application.properties
+
+/target/
+*.class
+.mvn/
