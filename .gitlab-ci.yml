@@ -1,0 +1,39 @@
+include:
+  - project: 'devops/gitlab-ci-pipeline'
+    ref: master
+    file: 'default-pipeline/push-repo-ci-pipeline.yml'
+  - project: 'devops/gitlab-ci-pipeline'
+    ref: master
+    file: 'build-maven/maven-ci-pipeline.yml'
+  - project: 'devops/gitlab-ci-pipeline'
+    ref: master
+    file: 'scanner-dev/sonarqube.yml'
+  - project: 'devops/gitlab-ci-pipeline'
+    ref: master
+    file: 'deploy-dev/docker-oc-dev-pipeline.yml'
+  - project: 'devops/gitlab-ci-pipeline'
+    ref: master
+    file: 'deploy-dev/deploy-oc-dev-pipeline.yml'
+  - project: 'devops/gitlab-ci-pipeline'
+    ref: master
+    file: 'merge-request-to-master.yml'
+  - project: 'devops/gitlab-ci-pipeline'
+    ref: master
+    file: 'deploy-prod/docker-prod-oc1-oc2-pipeline.yml'
+  - project: 'devops/gitlab-ci-pipeline'
+    ref: master
+    file: 'deploy-prod/deploy-prod-oc1-oc2-pipeline.yml'
+  - project: 'devops/gitlab-ci-pipeline'
+    ref: master
+    file: 'deploy-prod/rollback-prod-oc1-oc2-pipeline.yml'
+
+stages:
+  - push-repo
+  - build-jar
+  - sonar_scan
+  - build-docker-oc-dev
+  - deploy-oc-dev
+  - tag
+  - build-docker-prod
+  - deploy-prod
+  - rollback-prod
